@@ -1,0 +1,6 @@
+﻿import type { User } from "./User.js";
+
+export interface IUserRepository {
+  save(user: User): Promise<void>;
+  findById(id: string): Promise<User | null>;
+}

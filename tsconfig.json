@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    // --- Compilacion ---
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    // --- Calidad de codigo ---
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "noUncheckedIndexedAccess": true, // Evita bugs con arrays/objects
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    // --- Interop ---
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    // --- Source maps para debugging ---
+    "sourceMap": true,
+    "declarationMap": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["core/modules/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@presentation/*": ["presentation/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
