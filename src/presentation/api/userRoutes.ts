@@ -26,16 +26,10 @@ app.post('/',
 
 app.get('list', (c) => {
   const container = c.get('container');
-  console.log(container.registrations);
-
   const command = container.resolve<UserModule.GetList>('getUserList');
 
   const result = command.execute();
-
-  if (result.isErr()) {
-    return errorToResponse(c, result.error);
-  }
-
-  return c.json(result.value, 200);
+  return result.match(result => c.json(result, 200),
+      error => errorToResponse(c, error));
 })
 export default app;
