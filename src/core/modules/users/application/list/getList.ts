@@ -2,7 +2,7 @@ import { err, ok, Result } from "neverthrow";
 import type { IUserRepository } from "@modules/users/domain/IUserRepository.js";
 import type { UserDomainError } from "@modules/users/domain/errors.js";
 import { User } from "@modules/users/domain/User.js";
-import type { GetListResponse } from "@modules/users/index.js";
+import type { GetListResponse } from "@modules/users/application/list/getListResponse.js";
 
 
 export class GetList {

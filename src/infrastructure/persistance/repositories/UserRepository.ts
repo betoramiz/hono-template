@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm';
-import type { IUserRepository } from "../../../core/modules/users/domain/IUserRepository.js";
-import { User } from "../../../core/modules/users/domain/User.js";
+import type { IUserRepository } from "@modules/users/domain/IUserRepository.js";
+import { User } from "@modules/users/domain/User.js";
 import { usersTable } from "../shemas/users.shema.js";
-import { db } from "../../database/connection";
+import { db } from "@infrastructure/database/connection.js";
 
 export class UserRepository implements IUserRepository {
   async save(user: User): Promise<void> {
