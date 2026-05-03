@@ -24,11 +24,11 @@ app.post('/',
   return c.json(result.value, 201);
 });
 
-app.get('list', (c) => {
+app.get('list', async (c) => {
   const container = c.get('container');
   const command = container.resolve<UserModule.GetList>('getUserList');
 
-  const result = command.execute();
+  const result = await command.execute();
   return result.match(result => c.json(result, 200),
       error => errorToResponse(c, error));
 })

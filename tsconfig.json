@@ -16,7 +16,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": [
-      "node"
+      "node",
+      "bun-types"
     ],
     // --- Source maps para debugging ---
     "sourceMap": true,

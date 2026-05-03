@@ -1,10 +1,19 @@
-import { eq } from 'drizzle-orm';
+import { eq } from "drizzle-orm";
 import type { IUserRepository } from "@modules/users/domain/IUserRepository.js";
 import { User } from "@modules/users/domain/User.js";
-import { usersTable } from "../shemas/users.shema.js";
 import { db } from "@infrastructure/database/connection.js";
+import { usersTable } from "@infrastructure/persistence/schemas/users.schema.js";
+import type { GetListResponse } from "@modules/users/application/list/getListResponse.js";
 
 export class UserRepository implements IUserRepository {
+  async getAll(): Promise<GetListResponse[]> {
+    return db.select({
+      name: usersTable.name,
+      email: usersTable.email
+    })
+      .from(usersTable);
+  }
+
   async save(user: User): Promise<void> {
     const data = user.toPrimitives();
     await db.insert(usersTable)

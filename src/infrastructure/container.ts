@@ -1,5 +1,5 @@
 ﻿import { createContainer, asClass, InjectionMode } from 'awilix';
-import { UserRepository } from "./persistance/repositories/UserRepository.js";
+import { UserRepository } from "./persistence/repositories/UserRepository.js";
 import * as UserModule  from '@modules/users/index.js'
 
 export const container = createContainer({
