@@ -1,5 +1,5 @@
 ﻿import type { User } from "./User.js";
-import type { GetListResponse } from "@modules/users/application/list/getListResponse.js";
+import type { GetListResponse } from "./usecases/list/getListResponse.js";
 
 export interface IUserRepository {
   save(user: User): Promise<void>;

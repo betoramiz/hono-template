@@ -1,7 +1,7 @@
 import { ok, Result } from "neverthrow";
-import type { IUserRepository } from "@modules/users/domain/IUserRepository.js";
-import type { UserDomainError } from "@modules/users/domain/errors.js";
-import type { GetListResponse } from "@modules/users/application/list/getListResponse.js";
+import type { IUserRepository } from "../../IUserRepository";
+import type { UserDomainError } from "../../errors";
+import type { GetListResponse } from "src/core/usecases/users/list/getListResponse.js";
 
 
 export class GetList {

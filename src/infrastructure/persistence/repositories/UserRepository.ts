@@ -1,9 +1,9 @@
 import { eq } from "drizzle-orm";
-import type { IUserRepository } from "@modules/users/domain/IUserRepository.js";
-import { User } from "@modules/users/domain/User.js";
+import type { IUserRepository } from "../../../core/users/IUserRepository.js";
+import { User } from "../../../core/users/User.js";
 import { db } from "@infrastructure/database/connection.js";
 import { usersTable } from "@infrastructure/persistence/schemas/users.schema.js";
-import type { GetListResponse } from "@modules/users/application/list/getListResponse.js";
+import type { GetListResponse } from "../../../core/users/usecases/list/getListResponse.js";
 
 export class UserRepository implements IUserRepository {
   async getAll(): Promise<GetListResponse[]> {

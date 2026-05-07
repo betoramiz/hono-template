@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { errorToResponse } from "./errorToResponse.js";
 import { zValidator } from "@hono/zod-validator";
-import type { CreateUser } from "@modules/users/application/create/create.usecase.js";
-import { CreateUserSchema } from "@modules/users/application/create/schema.js";
-import * as UserModule from "@modules/users/index.js";
+import type { CreateUser } from "../../core/users/index.js";
+import { CreateUserSchema } from "../../core/users/usecases/create/schema.js";
+import * as UserModule from "../../core/users/index.js";
 
 const app = new Hono();
 
@@ -16,12 +16,7 @@ app.post('/',
   const command = container.resolve<CreateUser>('createUser');
 
   const result = await command.execute(body);
-
-  if (result.isErr()) {
-    return errorToResponse(c, result.error);
-  }
-
-  return c.json(result.value, 201);
+  return result.match(val => c.json(val, 201), error => errorToResponse(c, error))
 });
 
 app.get('list', async (c) => {
@@ -29,7 +24,6 @@ app.get('list', async (c) => {
   const command = container.resolve<UserModule.GetList>('getUserList');
 
   const result = await command.execute();
-  return result.match(result => c.json(result, 200),
-      error => errorToResponse(c, error));
+  return result.match(result => c.json(result, 200), error => errorToResponse(c, error));
 })
 export default app;

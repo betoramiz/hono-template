@@ -1,5 +1,5 @@
 ﻿import { Result, ok, err } from 'neverthrow';
-import { UserDomainError } from "@modules/users/domain/errors.js";
+import { UserDomainError } from './errors.js';
 
 export interface UserProps {
   id: string;

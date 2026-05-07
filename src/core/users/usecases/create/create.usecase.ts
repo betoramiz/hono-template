@@ -1,9 +1,9 @@
 ﻿import { Result, ok, err } from 'neverthrow';
 import { v4 as uuidv4 } from 'uuid';
-import { User } from "../../domain/User.js";
-import type { IUserRepository } from "../../domain/IUserRepository.js";
+import { User } from "../../User.js";
+import type { IUserRepository } from "../../IUserRepository.js";
 import type { CreateUserCommand } from "./schema.js";
-import type { UserDomainError } from "@modules/users/domain/errors.js";
+import type { UserDomainError } from "../../errors.js";
 
 
 export class CreateUser {
