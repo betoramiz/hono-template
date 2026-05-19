@@ -1,10 +1,3 @@
-﻿export type UserErrorTag = 
-  | 'InvalidDomainError' 
-  | 'UserNotFoundError';
+﻿import { AppError } from "@shared/errors/AppError.js";
 
-export class UserDomainError extends Error {
-  constructor(public readonly _tag: UserErrorTag, message?: string) {
-    super(message ?? _tag);
-    this.name = _tag;
-  }
-}
+export const userNotFoundError = (message?: string) => AppError.NotFound(message ?? 'User Not Found');

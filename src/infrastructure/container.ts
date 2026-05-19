@@ -1,5 +1,5 @@
-﻿import { createContainer, asClass, InjectionMode } from 'awilix';
-import { UserRepository } from "./persistence/repositories/UserRepository.js";
+﻿import { createContainer, asClass, InjectionMode, asValue } from "awilix";
+import * as UserRepositoryFunction from "./persistence/repositories/user.repository.js";
 import * as UserModule  from '../core/users/index.js'
 
 export const container = createContainer({
@@ -8,7 +8,9 @@ export const container = createContainer({
 
 
 container.register({
-  userRepository: asClass(UserRepository).singleton(),
+  userRepository: asValue(UserRepositoryFunction),
   createUser: asClass(UserModule.CreateUser).scoped(),
-  getUserList: asClass(UserModule.GetList).scoped()
+  getUserList: asClass(UserModule.GetList).scoped(),
+  getUserById: asClass(UserModule.GetUserById).scoped()
+
 });

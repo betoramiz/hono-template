@@ -1,5 +1,6 @@
 ﻿import { Result, ok, err } from 'neverthrow';
-import { UserDomainError } from './errors.js';
+import { type ErrorResponse } from "@shared/errors/ErrorTypes.js";
+import { AppError } from "@shared/errors/AppError.js";
 
 export interface UserProps {
   id: string;
@@ -11,9 +12,9 @@ export interface UserProps {
 export class User {
   private constructor(private props: UserProps) {}
 
-  public static create(name: string, email: string, id: string): Result<User, UserDomainError> {
+  public static create(name: string, email: string, id: string): Result<User, ErrorResponse> {
     if (name.length < 3) {
-      return err(new UserDomainError( 'InvalidDomainError',"El nombre debe tener al menos 3 caracteres."));
+      return err(AppError.BadRequest("El nombre debe tener al menos 3 caracteres."));
     }
     return ok(new User({ id, name, email, isActive: true }));
   }

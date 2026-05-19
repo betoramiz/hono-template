@@ -1,15 +1,14 @@
 ﻿import { Result, ok, err } from 'neverthrow';
 import { v4 as uuidv4 } from 'uuid';
-import { User } from "../../User.js";
-import type { IUserRepository } from "../../IUserRepository.js";
+import { User, type UserProps } from "../../User.js";
+import * as UserRepository from "@repositories/user.repository.js";
 import type { CreateUserCommand } from "./schema.js";
-import type { UserDomainError } from "../../errors.js";
-
+import type { ErrorResponse } from "@shared/errors/ErrorTypes.js";
 
 export class CreateUser {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor() {}
 
-  async execute(command: CreateUserCommand): Promise<Result<any, UserDomainError>> {
+  async execute(command: CreateUserCommand): Promise<Result<UserProps, ErrorResponse>> {
     const userResult = User.create(command.name, command.email, uuidv4());
 
     if (userResult.isErr()) {
@@ -17,7 +16,7 @@ export class CreateUser {
     }
 
     const user = userResult.value;
-    await this.userRepository.save(user);
+    await UserRepository.save(user);
 
     return ok(user.toPrimitives());
   }

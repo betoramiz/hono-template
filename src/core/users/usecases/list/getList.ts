@@ -1,14 +1,14 @@
 import { ok, Result } from "neverthrow";
-import type { IUserRepository } from "../../IUserRepository";
-import type { UserDomainError } from "../../errors";
-import type { GetListResponse } from "src/core/usecases/users/list/getListResponse.js";
+import * as UserRepository from "@repositories/user.repository.js"
+import type { GetListResponse } from "@core/users/usecases/list/getListResponse.js";
+import type { ErrorResponse } from "@shared/errors/ErrorTypes.js";
 
 
 export class GetList {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor() {}
 
-  async execute(): Promise<Result<GetListResponse[], UserDomainError>> {
-    const users = await this.userRepository.getAll();
+  async execute(): Promise<Result<GetListResponse[], ErrorResponse>> {
+    const users = await UserRepository.getAll();
     return ok(users);
   }
 

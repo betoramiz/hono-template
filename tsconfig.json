@@ -24,8 +24,10 @@
     "declarationMap": true,
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": ["core/modules/*"],
+      "@core/*": ["core/*"],
+      "@repositories/*": ["infrastructure/persistence/repositories/*"],
       "@infrastructure/*": ["infrastructure/*"],
+      "@shared/*": ["shared/*"],
       "@presentation/*": ["presentation/*"]
     }
   },
